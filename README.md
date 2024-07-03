@@ -4,10 +4,11 @@ This is a demo project to show how to use GraphQL with Django and  python librar
 
 
 input query - 
-
+```
 query getBookquery{
     books {
         id
         title
     }
 }
+```
