@@ -1,0 +1,11 @@
+# adding - mutation
+```
+mutation firstmutaion{
+    updateCategory(name:"newcat") {
+        category{
+          name
+        }
+    }
+  }
+
+```
