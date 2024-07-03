@@ -39,7 +39,10 @@ class Query(graphene.ObjectType):
         return Answer.objects.filter(question=id)
 
 
-class CategoryMutation(graphene.Mutation):
+# ******************* 😎 MUTATIONS 😎 *************************#
+
+
+class CategoryCreateMutation(graphene.Mutation):
     class Arguments:
         name = graphene.String(required=True)
 
@@ -49,11 +52,42 @@ class CategoryMutation(graphene.Mutation):
     def mutate(cls, root, info, name):
         category = Category(name=name)
         category.save()
-        return CategoryMutation(category=category)
+        return CategoryCreateMutation(category=category)
+
+
+class CategoryUpdateMutation(graphene.Mutation):
+    class Arguments:
+        name = graphene.String(required=True)
+        id = graphene.Int(required=True)
+
+    category = graphene.Field(CategoryType)
+
+    @classmethod
+    def mutate(cls, root, info, name, id):
+        category = Category.objects.get(id=id)
+        category.name = name
+        category.save()
+        return CategoryUpdateMutation(category=category)
+
+
+class CategoryDeleteMutation(graphene.Mutation):
+    class Arguments:
+        id = graphene.Int(required=True)
+
+    category = graphene.Field(CategoryType)
+
+    @classmethod
+    def mutate(cls, root, info, id):
+        category = Category.objects.get(id=id)
+        if category is not None:
+            category.delete()
+        return CategoryUpdateMutation(category=category)
 
 
 class Mutation(graphene.ObjectType):
-    update_category = CategoryMutation.Field()
+    create_category = CategoryCreateMutation.Field()
+    update_category = CategoryUpdateMutation.Field()
+    delete_category = CategoryDeleteMutation.Field()
 
 
 schema = graphene.Schema(query=Query, mutation=Mutation)

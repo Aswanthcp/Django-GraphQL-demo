@@ -1,11 +1,35 @@
 # adding - mutation
 ```
 mutation firstmutaion{
-    updateCategory(name:"newcat") {
+    createCategory(name:"newcat") {
         category{
           name
         }
     }
   }
+
+```
+# updating - mutation
+```
+mutation firstmutaion{
+    updateCategory(id:2,name:"udpatecat") {
+        category{
+          name
+          id
+        }
+    }
+  }
+
+```
+# delete - mutation
+```
+mutation firstmutaion{
+    deleteCategory(id:2){
+      category{
+        id
+      }
+    }
+  }
+
 
 ```
