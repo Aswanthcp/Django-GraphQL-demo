@@ -1,4 +1,4 @@
-## GraphQL 
+# GraphQL 
 + GraphQL is an open-source data query language for APIs and It is a server-side runtime for executing the query. The server’s GraphQL runtime takes care of executing the query and ensuring that the right data is fetched and sent back.
 
 +  It is an alternative to REST, where clients make multiple requests to different endpoints to get the data they require but in GraphQL clients can request exactly the data they need in a single query.
@@ -6,16 +6,16 @@
    It was developed by Facebook and made open source for the whole world.
 
 
-# Graphene-Django
+### Graphene-Django
 
 Graphene-Django is an open-source library that provides seamless integration between Django, a high-level Python web framework, and Graphene, a library for building GraphQL APIs. The library allows developers to create GraphQL APIs in Django quickly and efficiently while maintaining a high level of performance.
 
-# Installation
+### Installation
 To install Graphene-Django, run the following command:
 ```
 pip install graphene-django
 ```
-# Configuration
+### Configuration
 After installation, add 'graphene_django' to your Django project's INSTALLED_APPS list and define the GraphQL schema in your project's settings:
 ```
 INSTALLED_APPS = [
@@ -27,7 +27,7 @@ GRAPHENE = {
     'SCHEMA': 'myapp.schema.schema'
 }
 ```
-# Usage
+### Usage
 To use Graphene-Django, create a schema.py file in your Django app directory and define your GraphQL types and queries:
 ```
 import graphene
@@ -57,7 +57,7 @@ urlpatterns = [
 ]
 
 ```
-# Testing
+### Testing
 Graphene-Django provides support for testing GraphQL APIs using Django's test client. To create tests, create a tests.py file in your Django app directory and write your test cases:
 ```
 from django.test import TestCase
