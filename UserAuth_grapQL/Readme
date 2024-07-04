@@ -1,0 +1,67 @@
+## ---------------------------- users List -------------------------------------------
+# query - userauth
+
+```
+query{
+  users{
+    edges{
+      node{
+        username
+
+      }
+    }
+  }
+}
+
+```
+## ---------------------------- current user -------------------------------------------
+## current user - query
+
+```
+query{
+  me{
+        username
+
+  }
+}
+```
+
+
+## ----------------------------Register -------------------------------------------
+# add new user 
+
+```
+mutation{
+  register(
+    email:"b@b.com",
+  	username:"abc",
+    password1:"secretPassword",
+     password2:"secretPassword"
+  
+  ){
+    success
+    errors
+    token
+    refreshToken
+    
+  }
+}
+ 
+```
+
+response 
+```
+{
+  "data": {
+    "register": {
+      "success": true,
+      "errors": null,
+      "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFiYyIsImV4cCI6MTcyMDA5MDY5NCwib3JpZ0lhdCI6MTcyMDA5MDM5NH0.FYGYBFe7Zr9iR1z1eIuNJkq4xxekOr9Xz6JGLNyjYVw",
+      "refreshToken": "ef6d8866b6bff0bc6a2b9b03c0eafb63de88c0d6"
+    }
+  }
+}
+
+```
+
+## ----------------------------end -------------------------------------------
