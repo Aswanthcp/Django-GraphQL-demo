@@ -64,4 +64,95 @@ response
 
 ```
 
-## ----------------------------end -------------------------------------------
+## ----------------------------Verify User-------------------------------------------
+```
+mutation{
+  verifyAccount(token:"eyJ1c2VybmFtZSI6ImFiYyIsImFjdGlvbiI6ImFjdGl2YXRpb24ifQ:1sPK5R:C1TeIELeypocfWIzXC8ZJ9ayjiObeM2nc_h68pok5Bo")
+  {
+    success,
+    errors
+    
+  }
+}
+```
+
+response 
+
+```
+{
+  "data": {
+    "verifyAccount": {
+      "success": true,
+      "errors": null
+    }
+  }
+}
+
+
+
+```
+
+## ----------------------------get User token -------------------------------------------
+
+```
+mutation{
+  tokenAuth(username:"abc",password:"secretPassword"){
+    success,
+    errors,
+    token,
+    refreshToken
+    user{
+      username
+    }
+  }
+}
+
+```
+
+{
+  "data": {
+    "tokenAuth": {
+      "success": true,
+      "errors": null,
+      "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFiYyIsImV4cCI6MTcyMDA5MTY1MCwib3JpZ0lhdCI6MTcyMDA5MTM1MH0.sFcHEUMehsZgvpluVsLRbwx7I_dYwlG9CgqRX2jFBYc",
+      "refreshToken": "f78363d7c727b86686bb7b806f63ce177dcf7955",
+      "user": {
+        "username": "abc"
+      }
+    }
+  }
+}
+
+## ----------------------------update User -------------------------------------------
+```
+mutation{
+  updateAccount(firstName:"abcnewfirstname")
+  {
+    success,
+    errors
+   
+  }
+}
+
+```
+
+response
+```
+
+{
+  "data": {
+    "updateAccount": {
+      "success": true,
+      "errors": null
+    }
+  }
+}
+
+
+
+```
+
+
+## -----------------------------------------------------------------------
+
+
