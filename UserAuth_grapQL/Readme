@@ -1,4 +1,5 @@
 ## ---------------------------- users List -------------------------------------------
+
 # query - userauth
 
 ```
@@ -14,7 +15,9 @@ query{
 }
 
 ```
+
 ## ---------------------------- current user -------------------------------------------
+
 ## current user - query
 
 ```
@@ -26,9 +29,9 @@ query{
 }
 ```
 
-
 ## ----------------------------Register -------------------------------------------
-# add new user 
+
+# add new user
 
 ```
 mutation{
@@ -37,19 +40,20 @@ mutation{
   	username:"abc",
     password1:"secretPassword",
      password2:"secretPassword"
-  
+
   ){
     success
     errors
     token
     refreshToken
-    
+
   }
 }
- 
+
 ```
 
-response 
+response
+
 ```
 {
   "data": {
@@ -65,18 +69,19 @@ response
 ```
 
 ## ----------------------------Verify User-------------------------------------------
+
 ```
 mutation{
-  verifyAccount(token:"eyJ1c2VybmFtZSI6ImFiYyIsImFjdGlvbiI6ImFjdGl2YXRpb24ifQ:1sPK5R:C1TeIELeypocfWIzXC8ZJ9ayjiObeM2nc_h68pok5Bo")
+  verifyAccount(token:"eyJ1c2VybmFtZSI6Im5ld3VzZXIyIiwiYWN0aW9uIjoiYWN0aXZhdGlvbiJ9:1sPOUk:LzzTSJ4Gfw_ZnttqptU7Dh7KOAjOMW2HN9frWcraMZ8")
   {
     success,
     errors
-    
+
   }
 }
 ```
 
-response 
+response
 
 ```
 {
@@ -110,33 +115,35 @@ mutation{
 ```
 
 {
-  "data": {
-    "tokenAuth": {
-      "success": true,
-      "errors": null,
-      "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFiYyIsImV4cCI6MTcyMDA5MTY1MCwib3JpZ0lhdCI6MTcyMDA5MTM1MH0.sFcHEUMehsZgvpluVsLRbwx7I_dYwlG9CgqRX2jFBYc",
-      "refreshToken": "f78363d7c727b86686bb7b806f63ce177dcf7955",
-      "user": {
-        "username": "abc"
-      }
-    }
-  }
+"data": {
+"tokenAuth": {
+"success": true,
+"errors": null,
+"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFiYyIsImV4cCI6MTcyMDA5MTY1MCwib3JpZ0lhdCI6MTcyMDA5MTM1MH0.sFcHEUMehsZgvpluVsLRbwx7I_dYwlG9CgqRX2jFBYc",
+"refreshToken": "f78363d7c727b86686bb7b806f63ce177dcf7955",
+"user": {
+"username": "abc"
+}
+}
+}
 }
 
 ## ----------------------------update User -------------------------------------------
+
 ```
 mutation{
   updateAccount(firstName:"abcnewfirstname")
   {
     success,
     errors
-   
+
   }
 }
 
 ```
 
 response
+
 ```
 
 {
@@ -152,7 +159,128 @@ response
 
 ```
 
+## ------------------------------password reset email-----------------------------------------
 
-## -----------------------------------------------------------------------
+```
+mutation{
+ sendPasswordResetEmail(
+
+  email:"c@c.com"
+){
+  success,
+  errors
+}
+}
+
+```
+
+response
+
+```
+{
+  "data": {
+    "sendPasswordResetEmail": {
+      "success": true,
+      "errors": null
+    }
+  }
+}
 
 
+```
+
+email --
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+<h3>127.0.0.1:8000</h3>
+
+<p>Hello newuser2!</p>
+
+<p>Reset your password on the link:</p>
+
+<p>http://127.0.0.1:8000/password-reset/eyJ1c2VybmFtZSI6Im5ld3VzZXIyIiwiYWN0aW9uIjoicGFzc3dvcmRfcmVzZXQifQ:1sPOg5:E2V3Zw0hctGABZtmKiHBKYFCQ03jJ1msZMXgoInbpRk</p>
+
+--===============1625123047234399066==--
+
+---
+
+## ------------------------------password reset-----------------------------------------
+
+```
+mutation{
+ passwordReset(
+
+  token:"eyJ1c2VybmFtZSI6Im5ld3VzZXIyIiwiYWN0aW9uIjoicGFzc3dvcmRfcmVzZXQifQ:1sPOg5:E2V3Zw0hctGABZtmKiHBKYFCQ03jJ1msZMXgoInbpRk",
+  newPassword1:"pass@1234",
+  newPassword2:"pass@1234"
+){
+  success,
+  errors
+}
+}
+
+```
+
+response
+
+```
+{
+  "data": {
+    "passwordReset": {
+      "success": true,
+      "errors": null
+    }
+  }
+}
+
+
+```
+
+## ------------------------------ reactivation email -----------------------------------------
+
+```
+mutation{
+ resendActivationEmail(
+
+  email:"c@c.com"
+
+){
+  success,
+  errors
+}
+}
+
+```
+
+response
+
+```
+{
+  "data": {
+    "resendActivationEmail": {
+      "success": true,
+      "errors": null
+    }
+  }
+}
+
+
+```
+
+email--
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+<h3>127.0.0.1:8000</h3>
+
+<p>Hello newuser2!</p>
+
+<p>Please activate your account on the link:</p>
+
+<p>http://127.0.0.1:8000/activate/eyJ1c2VybmFtZSI6Im5ld3VzZXIyIiwiYWN0aW9uIjoiYWN0aXZhdGlvbiJ9:1sPOiv:Ul3BEOfh90b8u06TSmS1XOoH6aO8qjrnqEY5f8XixkI</p>
+
+--===============2541270162273320649==--
+# ================================================+ +++ +============================================================================
